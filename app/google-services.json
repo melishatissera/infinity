@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "1024811522268",
+    "firebase_url": "https://infinity-57b07.firebaseio.com",
+    "project_id": "infinity-57b07",
+    "storage_bucket": "infinity-57b07.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1024811522268:android:d8ac9d7400c9a09f",
+        "android_client_info": {
+          "package_name": "com.example.melisha.infinity"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1024811522268-cdopv0sb5756hqvckjj2ctd3gl57ihdq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCja6lPkZL2f107xx1hZC88CpQTRk5ENZ0"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1024811522268-cdopv0sb5756hqvckjj2ctd3gl57ihdq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
