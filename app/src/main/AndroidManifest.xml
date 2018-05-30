@@ -17,19 +17,14 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".SplashActivity"
-            android:theme="@style/AppTheme.NoActionBar">
-
-        </activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".LoginActivity"
-            android:label="@string/title_activity_login" >
-
-        </activity>
+            android:label="@string/title_activity_login" />
         <activity
             android:name=".TaskListActivity"
             android:label="@string/title_activity_task_list"
-            android:theme="@style/AppTheme.NoActionBar">
-        </activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".RatingListActivity"
             android:label="@string/title_activity_rating_list"
@@ -44,23 +39,37 @@
         <activity
             android:name=".DashboardActivity"
             android:label="@string/title_activity_dashboard"
-            android:theme="@style/AppTheme.NoActionBar">
-
-
-        </activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".NewEmployeeActivity"
             android:label="@string/title_activity_new_employee"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".SignupActivity"
-            android:label="Sign Up">
+            android:label="@string/title_activity_signup"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".DashboardActivityManger"
+            android:label="@string/title_activity_dashboard_manger"
+            android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".ViewAssignTaskListActivity" />
+        <activity android:name=".ViewMangerAssignTaskListActivity" />
+        <activity android:name=".NonAssignTaskListActivity" />
+        <activity android:name=".CompletedTaskListMangerActivity" />
+        <activity android:name=".OnGoingMangerTaskListActivity" />
+        <activity android:name=".OnGoingTaskListActivity" />
+        <activity android:name=".CompletedTaskListActivity" />
+        <activity
+            android:name=".AboutUs"
+            android:label="@string/title_activity_about_us"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".ContactUs"></activity>
     </application>
 
 </manifest>

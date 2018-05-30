@@ -31,7 +31,7 @@ import java.util.List;
 public class EmployeeListActivity extends AppCompatActivity {
     DatabaseReference databaseReference;
     ProgressDialog progressDialog;
-    List<Tasks> employeeList = new ArrayList<>();
+    List<EmployeesRatings> employeeList = new ArrayList<>();
     RecyclerView recyclerView;
     RecyclerView.Adapter adapter ;
 
@@ -54,19 +54,19 @@ public class EmployeeListActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         recyclerView = (RecyclerView) findViewById(R.id.recyclerViewEmployee);
-      //  recyclerView.setHasFixedSize(true);
+      recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(EmployeeListActivity.this));
         progressDialog = new ProgressDialog(EmployeeListActivity.this);
         progressDialog.setMessage("Loading Data from Firebase Database");
         progressDialog.show();
-        databaseReference = FirebaseDatabase.getInstance().getReference().child("tasks");
+        databaseReference = FirebaseDatabase.getInstance().getReference().child("employees");
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot snapshot) {
 
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                     try {
-                        Tasks empList = dataSnapshot.getValue(Tasks.class);
+                        EmployeesRatings empList = dataSnapshot.getValue(EmployeesRatings.class);
                         employeeList.add(empList);
 
                         if(employeeList == null ){
@@ -114,10 +114,10 @@ public class EmployeeListActivity extends AppCompatActivity {
     private class EmployeeListingAdapter extends RecyclerView.Adapter<EmployeeListingAdapter.ViewHolder> {
 
         Context context;
-        List<Tasks> Employees;
+        List<EmployeesRatings> Employees;
 
 
-        public EmployeeListingAdapter(Context context, List<Tasks> TempList) {
+        public EmployeeListingAdapter(Context context, List<EmployeesRatings> TempList) {
 
             this.Employees = TempList;
             this.context = context;
@@ -134,8 +134,8 @@ public class EmployeeListActivity extends AppCompatActivity {
         @Override
         public void onBindViewHolder(EmployeeListingAdapter.ViewHolder holder, int position) {
 
-            final Tasks empData = Employees.get(position);
-            holder.empName.setText(empData.getTaskName());
+            final EmployeesRatings empData = Employees.get(position);
+            holder.empName.setText(empData.getEmployeeName());
         }
 
         @Override

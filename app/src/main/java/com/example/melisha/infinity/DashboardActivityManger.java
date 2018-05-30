@@ -15,13 +15,13 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.LinearLayout;
 
-public class DashboardActivity extends AppCompatActivity
+public class DashboardActivityManger extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_dashboard);
+        setContentView(R.layout.activity_dashboard_manger);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -126,15 +126,26 @@ public class DashboardActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_task_list) {
+        if (id == R.id.nav_add_task) {
+            Intent intent = new Intent(getApplicationContext(),InsertTaskActivity.class);
+            startActivity(intent);
+        } else if (id == R.id.nav_update_task) {
+            Intent intent = new Intent(getApplicationContext(),UpdateTaskActivity.class);
+            startActivity(intent);
+
+        } else if (id == R.id.nav_delete_task) {
+            Intent intent = new Intent(getApplicationContext(),DeleteTaskActivity.class);
+            startActivity(intent);
+
+        } else if (id == R.id.nav_task_list) {
             Intent intent = new Intent(getApplicationContext(),TaskListActivity.class);
             startActivity(intent);
 
         } else if (id == R.id.nav_allocated) {
-            Intent intent = new Intent(getApplicationContext(),TaskListActivity.class);
+            Intent intent = new Intent(getApplicationContext(),ViewAssignTaskListActivity.class);
             startActivity(intent);
         } else if (id == R.id.nav_non_allocated) {
-            Intent intent = new Intent(getApplicationContext(),TaskListActivity.class);
+            Intent intent = new Intent(getApplicationContext(),NonAssignTaskListActivity.class);
             startActivity(intent);
 
         }
@@ -148,12 +159,12 @@ public class DashboardActivity extends AppCompatActivity
             startActivity(intent);
         }
         else if (id == R.id.nav_about) {
-            Intent intent = new Intent(getApplicationContext(),DashboardActivity.class);
+            Intent intent = new Intent(getApplicationContext(),AboutUs.class);
             startActivity(intent);
 
         }
         else if (id == R.id.nav_contact) {
-            Intent intent = new Intent(getApplicationContext(),DashboardActivity.class);
+            Intent intent = new Intent(getApplicationContext(),ContactUs.class);
             startActivity(intent);
 
         }

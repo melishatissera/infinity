@@ -1,5 +1,12 @@
 package com.example.melisha.infinity;
 
+import com.google.firebase.database.Exclude;
+import com.google.firebase.database.IgnoreExtraProperties;
+
+import java.util.HashMap;
+import java.util.Map;
+
+@IgnoreExtraProperties
 public class EmployeesRatings {
 
     String EmployeeID;
@@ -34,6 +41,16 @@ public class EmployeesRatings {
         this.EmployeesRatings = employeesRatings;
         this.EmployeeName = employeeName;
         this.EmployeeID = employeeID;
+    }
+
+    @Exclude
+    public Map<String, Object> toMap() {
+        HashMap<String, Object> result = new HashMap<>();
+        result.put("employeeName", EmployeeName);
+        result.put("id", EmployeeID);
+        result.put("ratings", EmployeesRatings);
+
+        return result;
     }
 }
 
