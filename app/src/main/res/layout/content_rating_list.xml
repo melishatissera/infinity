@@ -8,13 +8,11 @@
     tools:context=".RatingListActivity"
     tools:showIn="@layout/activity_rating_list">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/text_margin"
-        android:text="@string/large_text"
-        android:backgroundTint="@color/white"
-        android:textColor="@color/white"
-        />
+    <ListView
+        android:id="@+id/mobile_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </ListView>
 
 </android.support.v4.widget.NestedScrollView>

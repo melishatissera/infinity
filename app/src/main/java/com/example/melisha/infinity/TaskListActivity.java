@@ -1,21 +1,35 @@
 package com.example.melisha.infinity;
 
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
+import android.util.Log;
+import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.BaseAdapter;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -23,24 +37,20 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class TaskListActivity extends AppCompatActivity {
-
-    ListView alltasks;
-    ProgressDialog mProgressDialog;
-    DatabaseReference databaseReference= FirebaseDatabase.getInstance().getReference();
-    ListingAdapter adapter;
-    ArrayList<Tasks> tasks=new ArrayList<>();
+    DatabaseReference databaseReference;
+    ProgressDialog progressDialog;
+    List<Tasks> list = new ArrayList<>();
+    RecyclerView recyclerView;
+    RecyclerView.Adapter adapter ;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_task_list);
-        alltasks=(ListView)findViewById(R.id.mobile_list);
-        adapter=new ListingAdapter(TaskListActivity.this,tasks);
-        alltasks.setAdapter(adapter);
-        retrieveData();
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -48,12 +58,42 @@ public class TaskListActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                Intent intent = new Intent(getApplicationContext(),InsertTaskActivity.class);
+                startActivity(intent);
             }
         });
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(TaskListActivity.this));
+        progressDialog = new ProgressDialog(TaskListActivity.this);
+        progressDialog.setMessage("Loading Data from Firebase Database");
+        progressDialog.show();
+        databaseReference = FirebaseDatabase.getInstance().getReference().child("tasks");
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot snapshot) {
+
+                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                    Tasks taskList = dataSnapshot.getValue(Tasks.class);
+                    list.add(taskList);
+                }
+
+                adapter = new ListingAdapter(TaskListActivity.this, list);
+                recyclerView.setAdapter(adapter);
+                progressDialog.dismiss();
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+                progressDialog.dismiss();
+
+            }
+        });
     }
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -70,83 +110,95 @@ public class TaskListActivity extends AppCompatActivity {
         return true;
     }
 
-    public void retrieveData()
-    {
-        showProgressDialog();
-        databaseReference.child("tasks").addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                if(dataSnapshot.exists())
-                {
-                    for(DataSnapshot postSnapShot:dataSnapshot.getChildren())
-                    {
-                        Tasks task=postSnapShot.getValue(Tasks.class);
-                        tasks.add(task);
-                        adapter.notifyDataSetChanged();
-                    }
-                }
-                hideProgressDialog();
-            }
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-                hideProgressDialog();
-            }
-        });
-    }
-    private void showProgressDialog() {
-        if (mProgressDialog == null) {
-            mProgressDialog = new ProgressDialog(TaskListActivity.this);
-            mProgressDialog.setMessage("Loading...");
-            mProgressDialog.setIndeterminate(true);
-        }
-        mProgressDialog.show();
-    }
-    private void hideProgressDialog() {
-        if (mProgressDialog != null && mProgressDialog.isShowing()) {
-            mProgressDialog.dismiss();
-        }
-    }
-    private class ListingAdapter extends BaseAdapter {
+    private class ListingAdapter extends RecyclerView.Adapter<ListingAdapter.ViewHolder> {
+
         Context context;
-        LayoutInflater layoutInflater;
-        ArrayList<Tasks> tasks;
-        public ListingAdapter(Context con,ArrayList<Tasks> tasks)
-        {
-            context=con;
-            layoutInflater = LayoutInflater.from(context);
-            this.tasks=tasks;
+        List<Tasks> TasksList;
+
+        TaskListActivity taskListActivity = new TaskListActivity();
+
+        public ListingAdapter(Context context, List<Tasks> TempList) {
+
+            this.TasksList = TempList;
+            this.context = context;
         }
+
         @Override
-        public int getCount() {
-            return tasks.size();
+        public ListingAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+
+            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.adapter_listing, parent, false);
+            ListingAdapter.ViewHolder viewHolder = new ListingAdapter.ViewHolder(view);
+            return viewHolder;
         }
+
         @Override
-        public View getView(int position, View convertView, ViewGroup parent) {
-            ViewHolder holder;
-            if (convertView == null) {
-                convertView = layoutInflater.inflate(R.layout.adapter_listing, null, false);
-                holder = new ViewHolder();
-                holder.taskName = (TextView) convertView.findViewById(R.id.taskName);
-                holder.taskDesc = (TextView) convertView.findViewById(R.id.taskDesc);
-                convertView.setTag(holder);
-            } else {
-                holder = (ViewHolder) convertView.getTag();
+        public void onBindViewHolder(ListingAdapter.ViewHolder holder, int position) {
+
+            final Tasks taskData = TasksList.get(position);
+            holder.taskNo.setText(taskData.getTaskName());
+            holder.taskDescription.setText(taskData.getTaskDesc());
+            holder.btnDone.setTag(taskData.getTaskID());
+            holder.btnDelete.setTag(taskData.getTaskID());
+            holder.btnEdit.setTag(taskData.getTaskID());
+
+            holder.btnEdit.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    editTask(taskData.getTaskID());
+                }
+            });
+
+            holder.btnDelete.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    deleteTask(taskData.getTaskID());
+                }
+            });
+
+
+        }
+
+        @Override
+        public int getItemCount() {
+
+            return TasksList.size();
+        }
+
+        class ViewHolder extends RecyclerView.ViewHolder {
+
+            public TextView taskNo;
+            public TextView taskDescription;
+            public ImageButton btnDelete;
+            public ImageButton btnEdit;
+            public Button btnDone;
+
+            public ViewHolder(View itemView) {
+
+                super(itemView);
+
+                taskNo = (TextView) itemView.findViewById(R.id.taskID);
+                taskDescription = (TextView) itemView.findViewById(R.id.taskDesc);
+                btnDelete = itemView.findViewById(R.id.btnDelete);
+                btnDone = itemView.findViewById(R.id.btnDone);
+                btnEdit = itemView.findViewById(R.id.btnEdit);
             }
-            Tasks task=tasks.get(position);
-            holder.taskName.setText(task.getTaskName());
-            holder.taskDesc.setText(task.getTaskDesc());
-            return convertView;
         }
-        public class ViewHolder {
-            TextView taskName, taskDesc;
-        }
-        @Override
-        public Object getItem(int position) {
-            return tasks.get(position);
-        }
-        @Override
-        public long getItemId(int position) {
-            return position;
-        }
+
+
+    }
+    private void editTask(String Value){
+        Toast.makeText(getApplicationContext(), Value, Toast.LENGTH_SHORT).show();
+        String getValue = Value;
+        Intent intent = new Intent(getApplicationContext(),UpdateTaskActivity.class);
+        intent.putExtra("EXTRA_SESSION_ID", getValue);
+        startActivity(intent);
+    }
+
+    private void deleteTask(String Value){
+        Toast.makeText(getApplicationContext(), Value, Toast.LENGTH_SHORT).show();
+        String getValue = Value;
+        Intent intent = new Intent(getApplicationContext(),DeleteTaskActivity.class);
+        intent.putExtra("EXTRA_SESSION_ID", getValue);
+        startActivity(intent);
     }
 }

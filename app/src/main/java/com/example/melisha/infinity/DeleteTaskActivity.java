@@ -1,20 +1,56 @@
 package com.example.melisha.infinity;
 
-import android.app.ActionBar;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.Map;
 
 public class DeleteTaskActivity extends AppCompatActivity {
+
+    DatabaseReference database = FirebaseDatabase.getInstance().getReference("tasks");
+
+    Button deleteBtn;
+    TextView taskId;
+
+    String id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_delete_task);
-
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        Intent intent = getIntent();
+        id = intent.getStringExtra("EXTRA_SESSION_ID");
+        taskId = findViewById(R.id.taskID);
+        deleteBtn = findViewById(R.id.btnDelete);
+        taskId.setText(id);
+
+        deleteBtn.setOnClickListener(new View.OnClickListener()
+
+        {
+            @Override
+            public void onClick (View v) {
+                deleteTask();
+            }
+        });
     }
 
     @Override
@@ -30,5 +66,33 @@ public class DeleteTaskActivity extends AppCompatActivity {
 
     public boolean onCreateOptionsMenu(Menu menu) {
         return true;
+    }
+
+    public void deleteTask(){
+        Toast.makeText(this, "DELETED..", Toast.LENGTH_SHORT).show();
+
+        database.child("tasks").child(id).addListenerForSingleValueEvent(
+                new ValueEventListener() {
+
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        Tasks tasks = dataSnapshot.getValue(Tasks.class);
+
+                        if (tasks == null) {
+                            Toast.makeText(DeleteTaskActivity.this,
+                                    "Error: could not fetch user.",
+                                    Toast.LENGTH_SHORT).show();
+                        } else {
+
+                        }
+                        finish();
+
+                        database.child("tasks").child("taskID").child("status").setValue("deleted");
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+                    }
+                });
     }
 }

@@ -35,7 +35,6 @@ import java.util.Map;
 public class InsertTaskActivity extends AppCompatActivity {
 
     DatabaseReference database = FirebaseDatabase.getInstance().getReference();
-    DatabaseReference tasks;
 
     Button insertBtn;
     EditText assignee;
@@ -172,16 +171,8 @@ public class InsertTaskActivity extends AppCompatActivity {
     }
 
     private void createNewTask(Integer taskNo, String taskName, String taskDescription, String dueOn, String assignee) {
-        // Create new post at /user-posts/$userid/$postid and at
-        // /posts/$postid simultaneously
         String key = database.child("tasks").push().getKey();
-     //   Tasks post = new Tasks(taskNo, taskName, taskDescription, dueOn, assignee);
-      //  Map<String, Object> postValues = post.toMap();
-
         Map<String, Object> childUpdates = new HashMap<>();
-      //  childUpdates.put("/posts/" + key, postValues);
-      //  childUpdates.put("/user-posts/" + taskNo + "/" + key, postValues);
-
         database.updateChildren(childUpdates);
     }
 }
