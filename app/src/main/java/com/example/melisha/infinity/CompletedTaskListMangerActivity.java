@@ -62,7 +62,7 @@ public class CompletedTaskListMangerActivity extends AppCompatActivity {
         progressDialog = new ProgressDialog(CompletedTaskListMangerActivity.this);
         progressDialog.setMessage("Loading...");
         progressDialog.show();
-        query = FirebaseDatabase.getInstance().getReference().child("tasks").orderByChild("status").equalTo("done");
+        query = FirebaseDatabase.getInstance().getReference().child("tasks").orderByChild("taskStatus").equalTo("done");
         query.addChildEventListener(new ChildEventListener() {
 
             @Override
@@ -70,7 +70,7 @@ public class CompletedTaskListMangerActivity extends AppCompatActivity {
 
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                     try {
-                        Tasks taskList = dataSnapshot.child("status").getValue(Tasks.class);
+                        Tasks taskList = dataSnapshot.getValue(Tasks.class);
                         list.add(taskList);
                     } catch (Exception ex) {
 

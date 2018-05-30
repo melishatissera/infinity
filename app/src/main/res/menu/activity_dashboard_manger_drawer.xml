@@ -29,14 +29,8 @@
             android:id="@+id/nav_completed_list"
             android:title="Completed Tasks" />
         <item
-            android:id="@+id/nav_overdue_list"
-            android:title="Overdue Tasks" />
-        <item
             android:id="@+id/nav_employee_list"
             android:title="Employee List" />
-        <item
-            android:id="@+id/nav_rating_list"
-            android:title="Rating List" />
     </group>
 
     <item android:title="Communicate">

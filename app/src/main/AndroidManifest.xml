@@ -17,17 +17,19 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".SplashActivity"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".LoginActivity"
             android:label="@string/title_activity_login" />
         <activity
             android:name=".TaskListActivity"
             android:label="@string/title_activity_task_list"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name=".RatingListActivity"
-            android:label="@string/title_activity_rating_list"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".EmployeeListActivity"
@@ -53,11 +55,7 @@
             android:name=".DashboardActivityManger"
             android:label="@string/title_activity_dashboard_manger"
             android:theme="@style/AppTheme.NoActionBar">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name=".ViewAssignTaskListActivity"

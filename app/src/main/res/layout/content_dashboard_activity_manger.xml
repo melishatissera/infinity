@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:showIn="@layout/app_bar_dashboard"
     android:background="@color/backgroundcolor">
 
     <LinearLayout
@@ -25,26 +24,23 @@
             android:foreground="?android:attr/selectableItemBackground">
 
             <LinearLayout
-                android:id="@+id/task_list_finish_today"
+                android:id="@+id/task_assign"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center"
                 android:orientation="vertical">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:background="@drawable/round_textview"
-                    android:gravity="center"
-                    android:text="10"
-                    android:textStyle="bold" />
+                <ImageView
+                    android:id="@+id/imageView7"
+                    android:layout_width="61dp"
+                    android:layout_height="57dp"
+                    app:srcCompat="@drawable/assign" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:text="Tasks to finish  today"
+                    android:text="View Assign Task"
                     android:textStyle="bold" />
 
                 <View
@@ -57,7 +53,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:padding="5dp"
-                    android:text="Check your task to finish"
+                    android:text="Check All Task Assign"
                     android:textColor="@android:color/darker_gray" />
 
             </LinearLayout>
@@ -71,26 +67,23 @@
             android:foreground="?android:attr/selectableItemBackground">
 
             <LinearLayout
-                android:id="@+id/task_list_on"
+                android:id="@+id/task_non_allocated"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center"
                 android:orientation="vertical">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:background="@drawable/round_textview"
-                    android:gravity="center"
-                    android:text="4"
-                    android:textStyle="bold" />
+                <ImageView
+                    android:id="@+id/imageView4"
+                    android:layout_width="71dp"
+                    android:layout_height="62dp"
+                    app:srcCompat="@drawable/allocated" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:text="On going tasks"
+                    android:text="Non Allocated Task"
                     android:textStyle="bold" />
 
                 <View
@@ -103,7 +96,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:padding="5dp"
-                    android:text="Check your on going activities"
+                    android:text="Check Non Allocated Tasks"
                     android:textColor="@android:color/darker_gray" />
 
             </LinearLayout>
@@ -126,26 +119,23 @@
             android:foreground="?android:attr/selectableItemBackground">
 
             <LinearLayout
-                android:id="@+id/task_list_all"
+                android:id="@+id/task_completed"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center"
                 android:orientation="vertical">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:background="@drawable/round_textview"
-                    android:gravity="center"
-                    android:text="7"
-                    android:textStyle="bold" />
+                <ImageView
+                    android:id="@+id/imageView6"
+                    android:layout_width="80dp"
+                    android:layout_height="72dp"
+                    app:srcCompat="@drawable/completed" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:text="All tasks allocated"
+                    android:text="Completed Tasks"
                     android:textStyle="bold" />
 
                 <View
@@ -158,7 +148,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:padding="5dp"
-                    android:text="Check your all activities allocated"
+                    android:text="Check Completed Task"
                     android:textColor="@android:color/darker_gray" />
 
             </LinearLayout>
@@ -172,26 +162,23 @@
             android:foreground="?android:attr/selectableItemBackground">
 
             <LinearLayout
-                android:id="@+id/rating_list"
+                android:id="@+id/task_ongoing"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center"
                 android:orientation="vertical">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:background="@drawable/round_textview"
-                    android:gravity="center"
-                    android:text="5"
-                    android:textStyle="bold" />
+                <ImageView
+                    android:id="@+id/imageView5"
+                    android:layout_width="92dp"
+                    android:layout_height="72dp"
+                    app:srcCompat="@drawable/ongoing" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:text="Ratings"
+                    android:text="On Going Task"
                     android:textStyle="bold" />
 
                 <View
@@ -204,7 +191,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:padding="5dp"
-                    android:text="Check your tasks ratings"
+                    android:text="Check On Going Task"
                     android:textColor="@android:color/darker_gray" />
 
             </LinearLayout>

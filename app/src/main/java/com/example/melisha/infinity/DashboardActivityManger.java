@@ -34,23 +34,15 @@ public class DashboardActivityManger extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        LinearLayout task_list_finish_today = findViewById(R.id.task_list_finish_today);
-        LinearLayout task_list_on = findViewById(R.id.task_list_on);
-        LinearLayout task_list_all = findViewById(R.id.task_list_all);
-        LinearLayout rating_list = findViewById(R.id.rating_list);
+        LinearLayout task_assign = findViewById(R.id.task_assign);
+        LinearLayout task_non_allocated = findViewById(R.id.task_non_allocated);
+        LinearLayout task_completed = findViewById(R.id.task_completed);
+        LinearLayout task_ongoing = findViewById(R.id.task_ongoing);
 
 
         String userType = getIntent().getStringExtra("userType");
 
-        if(userType == "admin"){
-            rating_list.setVisibility(View.GONE);
-        }
-        else if(userType == "emp"){
-            task_list_all.setVisibility(View.GONE);
-            task_list_on.setVisibility(View.GONE);
-        }
-
-        task_list_finish_today.setOnClickListener(new View.OnClickListener() {
+        task_assign.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
@@ -59,29 +51,29 @@ public class DashboardActivityManger extends AppCompatActivity
             }
         });
 
-        task_list_on.setOnClickListener(new View.OnClickListener() {
+        task_non_allocated.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                Intent intent = new Intent(getApplicationContext(),TaskListActivity.class);
+                Intent intent = new Intent(getApplicationContext(),NonAssignTaskListActivity.class);
                 startActivity(intent);
             }
         });
 
-        task_list_all.setOnClickListener(new View.OnClickListener() {
+        task_completed.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                Intent intent = new Intent(getApplicationContext(),TaskListActivity.class);
+                Intent intent = new Intent(getApplicationContext(),CompletedTaskListMangerActivity.class);
                 startActivity(intent);
             }
         });
 
-        rating_list.setOnClickListener(new View.OnClickListener() {
+        task_ongoing.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                Intent intent = new Intent(getApplicationContext(),RatingListActivity.class);
+                Intent intent = new Intent(getApplicationContext(),OnGoingMangerTaskListActivity.class);
                 startActivity(intent);
             }
         });
@@ -149,15 +141,23 @@ public class DashboardActivityManger extends AppCompatActivity
             startActivity(intent);
 
         }
+        else if (id == R.id.nav_ongoing_list) {
+            Intent intent = new Intent(getApplicationContext(),OnGoingMangerTaskListActivity.class);
+            startActivity(intent);
+
+        }
+        else if (id == R.id.nav_completed_list) {
+            Intent intent = new Intent(getApplicationContext(),CompletedTaskListMangerActivity.class);
+            startActivity(intent);
+
+        }
         else if (id == R.id.nav_employee_list) {
             Intent intent = new Intent(getApplicationContext(),EmployeeListActivity.class);
             startActivity(intent);
 
         }
-        else if (id == R.id.nav_rating_list) {
-            Intent intent = new Intent(getApplicationContext(),RatingListActivity.class);
-            startActivity(intent);
-        }
+
+
         else if (id == R.id.nav_about) {
             Intent intent = new Intent(getApplicationContext(),AboutUs.class);
             startActivity(intent);
