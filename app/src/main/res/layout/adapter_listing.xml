@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/card_view"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -21,19 +22,20 @@
             android:maxLines="3"
             android:padding="8dp"
             android:textColor="#222"
-            android:textSize="22dp"
+            android:textSize="18sp"
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/taskDesc"
+            android:id="@+id/taskDueOn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignStart="@+id/employeeName"
             android:layout_below="@+id/employeeName"
             android:maxLines="3"
             android:padding="8dp"
-            android:textColor="#666"
-            android:textSize="14dp" />
+            android:textColor="#fd2562"
+            android:textSize="12dp" />
+
 
         <ImageButton
             android:id="@+id/btnDelete"
@@ -57,8 +59,8 @@
             android:id="@+id/btnDone"
             android:layout_width="wrap_content"
             android:layout_height="34dp"
-            android:layout_alignBottom="@+id/taskDesc"
             android:layout_alignParentEnd="true"
+            android:layout_below="@+id/employeeName"
             android:layout_marginEnd="15dp"
             android:text="Done"
             android:textSize="12sp" />

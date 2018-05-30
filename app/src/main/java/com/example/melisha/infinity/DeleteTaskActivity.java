@@ -42,7 +42,7 @@ public class DeleteTaskActivity extends AppCompatActivity {
         {
             @Override
             public void onClick (View v) {
-                deleteTask();
+                deleteTask(id);
             }
         });
     }
@@ -62,31 +62,10 @@ public class DeleteTaskActivity extends AppCompatActivity {
         return true;
     }
 
-    public void deleteTask(){
+    public void deleteTask(String id) {
+
+        FirebaseDatabase.getInstance().getReference().child("tasks").child(id).removeValue();
+        finish();
         Toast.makeText(this, "DELETED..", Toast.LENGTH_SHORT).show();
-
-        database.child("tasks").child(id).addListenerForSingleValueEvent(
-                new ValueEventListener() {
-
-                    @Override
-                    public void onDataChange(DataSnapshot dataSnapshot) {
-                        Tasks tasks = dataSnapshot.getValue(Tasks.class);
-
-                        if (tasks == null) {
-                            Toast.makeText(DeleteTaskActivity.this,
-                                    "Error: could not fetch user.",
-                                    Toast.LENGTH_SHORT).show();
-                        } else {
-
-                        }
-                        finish();
-
-                        database.child("tasks").child("taskID").child("status").setValue("deleted");
-                    }
-
-                    @Override
-                    public void onCancelled(DatabaseError databaseError) {
-                    }
-                });
     }
 }

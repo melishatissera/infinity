@@ -77,6 +77,7 @@ public class TaskListActivity extends AppCompatActivity {
                 adapter = new ListingAdapter(TaskListActivity.this, list);
                 recyclerView.setAdapter(adapter);
                 progressDialog.dismiss();
+                adapter.notifyDataSetChanged();
             }
 
             @Override
@@ -130,7 +131,7 @@ public class TaskListActivity extends AppCompatActivity {
 
             final Tasks taskData = TasksList.get(position);
             holder.taskNo.setText(taskData.getTaskName());
-            holder.taskDescription.setText(taskData.getTaskDesc());
+            holder.taskDue.setText(taskData.getTaskDueOn());
             holder.btnDone.setTag(taskData.getTaskID());
             holder.btnDelete.setTag(taskData.getTaskID());
             holder.btnEdit.setTag(taskData.getTaskID());
@@ -161,7 +162,7 @@ public class TaskListActivity extends AppCompatActivity {
         class ViewHolder extends RecyclerView.ViewHolder {
 
             public TextView taskNo;
-            public TextView taskDescription;
+            public TextView taskDue;
             public ImageButton btnDelete;
             public ImageButton btnEdit;
             public Button btnDone;
@@ -171,7 +172,7 @@ public class TaskListActivity extends AppCompatActivity {
                 super(itemView);
 
                 taskNo = (TextView) itemView.findViewById(R.id.employeeName);
-                taskDescription = (TextView) itemView.findViewById(R.id.taskDesc);
+                taskDue = (TextView) itemView.findViewById(R.id.taskDueOn);
                 btnDelete = itemView.findViewById(R.id.btnDelete);
                 btnDone = itemView.findViewById(R.id.btnDone);
                 btnEdit = itemView.findViewById(R.id.btnEdit);

@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -30,8 +31,6 @@ public class UpdateTaskActivity extends AppCompatActivity {
     EditText taskDetails;
     EditText dueOn;
 
-    EditText selectDate;
-
     String id;
 
     @Override
@@ -45,9 +44,24 @@ public class UpdateTaskActivity extends AppCompatActivity {
         taskId = findViewById(R.id.employeeName);
         taskId.setText(id);
 
+        updateBtn = findViewById(R.id.update);
+        assignee = findViewById(R.id.assignee);
+        taskHead = findViewById(R.id.taskHead);
+        taskDetails = findViewById(R.id.taskDetails);
 
         getData();
 
+        try {
+            updateBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    updateTask(id);
+                }
+            });
+        }
+        catch (Exception ex){
+
+        }
     }
 
     @Override
@@ -101,5 +115,12 @@ public class UpdateTaskActivity extends AppCompatActivity {
                 }
             }
         );
+    }
+
+    public void updateTask(String id){
+        FirebaseDatabase.getInstance().getReference().child("taskAssignee").setValue(assignee);
+        FirebaseDatabase.getInstance().getReference().child("taskName").setValue(taskHead);
+        FirebaseDatabase.getInstance().getReference().child("taskDesc").setValue(taskDetails);
+        FirebaseDatabase.getInstance().getReference().child("taskDueOn").setValue(dueOn);
     }
 }

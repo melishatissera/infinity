@@ -2,14 +2,23 @@ package com.example.melisha.infinity;
 
 public class EmployeesRatings {
 
-    float EmployeesRatings;
+    String EmployeeID;
+    String EmployeesRatings;
     String EmployeeName;
 
-    public float getEmployeesRatings() {
+    public String getEmployeesRatings() {
         return EmployeesRatings;
     }
 
-    public void setEmployeesRatings(float employeesRatings) {
+    public String getEmployeeID() {
+        return EmployeeID;
+    }
+
+    public void setEmployeeID(String employeeID) {
+        EmployeeID = employeeID;
+    }
+
+    public void setEmployeesRatings(String employeesRatings) {
         EmployeesRatings = employeesRatings;
     }
 
@@ -20,9 +29,11 @@ public class EmployeesRatings {
     public void setEmployeeName(String employeeName) {
         EmployeeName = employeeName;
     }
-    public EmployeesRatings( float employeesRatings, String employeeName){
+
+    public EmployeesRatings( String employeesRatings, String employeeName, String employeeID){
         this.EmployeesRatings = employeesRatings;
         this.EmployeeName = employeeName;
+        this.EmployeeID = employeeID;
     }
 }
 

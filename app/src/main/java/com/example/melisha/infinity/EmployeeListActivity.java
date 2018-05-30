@@ -31,7 +31,7 @@ import java.util.List;
 public class EmployeeListActivity extends AppCompatActivity {
     DatabaseReference databaseReference;
     ProgressDialog progressDialog;
-    List<EmployeesRatings> employeeList = new ArrayList<>();
+    List<Tasks> employeeList = new ArrayList<>();
     RecyclerView recyclerView;
     RecyclerView.Adapter adapter ;
 
@@ -53,30 +53,37 @@ public class EmployeeListActivity extends AppCompatActivity {
         });
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
-        recyclerView.setHasFixedSize(true);
+        recyclerView = (RecyclerView) findViewById(R.id.recyclerViewEmployee);
+      //  recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(EmployeeListActivity.this));
         progressDialog = new ProgressDialog(EmployeeListActivity.this);
         progressDialog.setMessage("Loading Data from Firebase Database");
         progressDialog.show();
-        databaseReference = FirebaseDatabase.getInstance().getReference().child("employees");
+        databaseReference = FirebaseDatabase.getInstance().getReference().child("tasks");
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot snapshot) {
 
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                     try {
-                        EmployeesRatings empList = dataSnapshot.getValue(EmployeesRatings.class);
+                        Tasks empList = dataSnapshot.getValue(Tasks.class);
                         employeeList.add(empList);
+
+                        if(employeeList == null ){
+                            Toast.makeText(EmployeeListActivity.this, "No data", Toast.LENGTH_SHORT).show();
+                        }
                     }
                     catch (Exception ex){
 
                     }
+
                 }
+
 
                 adapter = new EmployeeListingAdapter(EmployeeListActivity.this, employeeList);
                 recyclerView.setAdapter(adapter);
                 progressDialog.dismiss();
+                adapter.notifyDataSetChanged();
             }
 
             @Override
@@ -107,10 +114,10 @@ public class EmployeeListActivity extends AppCompatActivity {
     private class EmployeeListingAdapter extends RecyclerView.Adapter<EmployeeListingAdapter.ViewHolder> {
 
         Context context;
-        List<EmployeesRatings> Employees;
+        List<Tasks> Employees;
 
 
-        public EmployeeListingAdapter(Context context, List<EmployeesRatings> TempList) {
+        public EmployeeListingAdapter(Context context, List<Tasks> TempList) {
 
             this.Employees = TempList;
             this.context = context;
@@ -127,8 +134,8 @@ public class EmployeeListActivity extends AppCompatActivity {
         @Override
         public void onBindViewHolder(EmployeeListingAdapter.ViewHolder holder, int position) {
 
-            final EmployeesRatings empData = Employees.get(position);
-            holder.empName.setText(empData.getEmployeeName());
+            final Tasks empData = Employees.get(position);
+            holder.empName.setText(empData.getTaskName());
         }
 
         @Override
