@@ -5,16 +5,18 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context=".EmployeeListActivity"
-    tools:showIn="@layout/activity_employee_list">
+    tools:context=".RatingListActivity"
+    tools:showIn="@layout/activity_rating_list">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/text_margin"
-        android:text="@string/large_text"
-        android:backgroundTint="@color/white"
-        android:textColor="@color/white"
-        />
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recyclerViewEmployee"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true">
+
+
+    </android.support.v7.widget.RecyclerView>
 
 </android.support.v4.widget.NestedScrollView>

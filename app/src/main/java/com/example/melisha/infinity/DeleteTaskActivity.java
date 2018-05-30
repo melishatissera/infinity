@@ -3,24 +3,18 @@ package com.example.melisha.infinity;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
-
-import java.util.Map;
 
 public class DeleteTaskActivity extends AppCompatActivity {
 
@@ -38,8 +32,8 @@ public class DeleteTaskActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         Intent intent = getIntent();
-        id = intent.getStringExtra("EXTRA_SESSION_ID");
-        taskId = findViewById(R.id.taskID);
+        id = intent.getStringExtra("ID");
+        taskId = findViewById(R.id.employeeName);
         deleteBtn = findViewById(R.id.btnDelete);
         taskId.setText(id);
 

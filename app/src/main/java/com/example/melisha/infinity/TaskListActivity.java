@@ -1,35 +1,24 @@
 package com.example.melisha.infinity;
 
-import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.text.TextUtils;
-import android.util.Log;
-import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.BaseAdapter;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.LinearLayout;
-import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -76,8 +65,13 @@ public class TaskListActivity extends AppCompatActivity {
             public void onDataChange(DataSnapshot snapshot) {
 
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
-                    Tasks taskList = dataSnapshot.getValue(Tasks.class);
-                    list.add(taskList);
+                    try {
+                        Tasks taskList = dataSnapshot.getValue(Tasks.class);
+                        list.add(taskList);
+                    }
+                    catch (Exception ex){
+
+                    }
                 }
 
                 adapter = new ListingAdapter(TaskListActivity.this, list);
@@ -176,7 +170,7 @@ public class TaskListActivity extends AppCompatActivity {
 
                 super(itemView);
 
-                taskNo = (TextView) itemView.findViewById(R.id.taskID);
+                taskNo = (TextView) itemView.findViewById(R.id.employeeName);
                 taskDescription = (TextView) itemView.findViewById(R.id.taskDesc);
                 btnDelete = itemView.findViewById(R.id.btnDelete);
                 btnDone = itemView.findViewById(R.id.btnDone);
@@ -198,7 +192,7 @@ public class TaskListActivity extends AppCompatActivity {
         Toast.makeText(getApplicationContext(), Value, Toast.LENGTH_SHORT).show();
         String getValue = Value;
         Intent intent = new Intent(getApplicationContext(),DeleteTaskActivity.class);
-        intent.putExtra("EXTRA_SESSION_ID", getValue);
+        intent.putExtra("ID", getValue);
         startActivity(intent);
     }
 }

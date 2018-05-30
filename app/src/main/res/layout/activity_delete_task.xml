@@ -20,7 +20,7 @@
         android:typeface="serif" />
 
     <TextView
-        android:id="@+id/taskID"
+        android:id="@+id/employeeName"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:backgroundTint="@color/white"
