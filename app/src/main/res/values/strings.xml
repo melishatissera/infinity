@@ -115,5 +115,7 @@
     <string name="nav_header_desc">Infinity</string>
     <string name="title_activity_dashboard">Infinity</string>
     <string name="title_activity_new_employee">Infinity</string>
-    <string name="title_activity_signup">SignupActivity</string>
+    <string name="title_activity_signup">Infinity</string>
+    <string name="title_activity_dashboard_manger">Infinity</string>
+    <string name="title_activity_about_us">Infinity</string>
 </resources>

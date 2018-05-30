@@ -5,41 +5,51 @@ import com.google.firebase.database.IgnoreExtraProperties;
 @IgnoreExtraProperties
 public class Users {
 
-    public String name;
-    public String email;
-    public Boolean employeeType;
+    public String empName;
+    public String empEmail;
+    public String empPassword;
+    public String empType;
 
-    public String getName() {
-        return name;
+    public String getEmpName() {
+        return empName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setEmpName(String empName) {
+        this.empName = empName;
     }
 
-    public String getEmail() {
-        return email;
+    public String getEmpEmail() {
+        return empEmail;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setEmpEmail(String empEmail) {
+        this.empEmail = empEmail;
     }
 
-    public Boolean getEmployeeType() {
-        return employeeType;
+    public String getEmpPassword() {
+        return empPassword;
     }
 
-    public void setEmployeeType(Boolean employeeType) {
-        this.employeeType = employeeType;
+    public void setEmpPassword(String empPassword) {
+        this.empPassword = empPassword;
+    }
+
+    public String getEmpType() {
+        return empType;
+    }
+
+    public void setEmpType(String empType) {
+        this.empType = empType;
     }
 
     public Users() {
     }
 
-    public Users(String name, String email, Boolean employeeType) {
-        this.name = name;
-        this.email = email;
-        this.employeeType = employeeType;
+    public Users(String name, String email, String employeeType, String Password) {
+        this.empName = name;
+        this.empEmail = email;
+        this.empType = employeeType;
+        this.empPassword = Password;
     }
 
 }
