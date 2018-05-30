@@ -19,16 +19,15 @@
         android:textSize="30sp"
         android:typeface="serif" />
 
-    <TextView
+    <EditText
         android:id="@+id/taskID"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:backgroundTint="@color/white"
-        android:hint="Assignee"
+        android:hint="Task ID"
         android:inputType="textPersonName"
         android:textColor="@color/white"
         android:textColorHint="@color/white" />
-
 
     <EditText
         android:id="@+id/taskAssignee"

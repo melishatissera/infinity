@@ -32,12 +32,11 @@
                 android:id="@+id/spinner"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:visibility="visible"
                 android:backgroundTint="@color/white"
                 android:hint="Assignee"
                 android:inputType="textPersonName"
                 android:textColor="@color/white"
-                android:textColorHint="@color/white"/>
+                android:textColorHint="@color/white" />
 
             <EditText
                 android:id="@+id/taskNo"
@@ -77,6 +76,20 @@
 
 
             <EditText
+                android:id="@+id/taskStatus"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="10dp"
+                android:backgroundTint="@color/white"
+                android:breakStrategy="balanced"
+                android:fitsSystemWindows="true"
+                android:gravity="top"
+                android:text="Status"
+                android:textColor="@color/white"
+                android:textColorHint="@color/white" />
+
+            <EditText
                 android:id="@+id/taskDetails"
                 android:layout_width="fill_parent"
                 android:layout_height="67dp"
@@ -92,8 +105,6 @@
                 android:singleLine="false"
                 android:textColor="@color/white"
                 android:textColorHint="@color/white" />
-
-
 
             <Button
                 android:id="@+id/insertBtn"

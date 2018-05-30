@@ -1,6 +1,7 @@
 package com.example.melisha.infinity;
 
 import android.app.DatePickerDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -45,15 +46,6 @@ public class NewEmployeeActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
-
         insertBtn = findViewById(R.id.insertBtn);
         EmpName = findViewById(R.id.empName);
         EmpEmail = findViewById(R.id.empEmail);
@@ -63,9 +55,9 @@ public class NewEmployeeActivity extends AppCompatActivity {
         isChecked = EmpType.isChecked();
 
         if(isChecked == true){
-type = "admin";
+            type = "admin";
         }
-        else {
+        else if(isChecked == false) {
             type ="emp";
         }
         insertBtn.setOnClickListener(new View.OnClickListener()
@@ -103,7 +95,7 @@ type = "admin";
         Toast.makeText(this, "Posting...", Toast.LENGTH_SHORT).show();
 
         final String taskNoGenerated ="123";
-        database.child("users").child(taskNoGenerated).addListenerForSingleValueEvent(
+        database.child("employees").child(taskNoGenerated).addListenerForSingleValueEvent(
                 new ValueEventListener() {
 
                     @Override
@@ -146,7 +138,7 @@ type = "admin";
     }
 
     private void createNewTask(Integer taskNo, String taskName, String taskDescription, String dueOn, String assignee) {
-        String key = database.child("users").push().getKey();
+        String key = database.child("employees").push().getKey();
         Map<String, Object> childUpdates = new HashMap<>();
         database.updateChildren(childUpdates);
     }

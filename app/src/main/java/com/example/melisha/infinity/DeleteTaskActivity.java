@@ -7,6 +7,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -18,7 +19,7 @@ public class DeleteTaskActivity extends AppCompatActivity {
     DatabaseReference database = FirebaseDatabase.getInstance().getReference("tasks");
 
     Button deleteBtn;
-    TextView taskId;
+    EditText taskId;
 
     String id;
 
@@ -39,7 +40,7 @@ public class DeleteTaskActivity extends AppCompatActivity {
         {
             @Override
             public void onClick (View v) {
-                deleteTask(id);
+                deleteTask(taskId.getText().toString().trim());
             }
         });
     }

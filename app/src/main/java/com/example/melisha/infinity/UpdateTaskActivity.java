@@ -19,8 +19,8 @@ public class UpdateTaskActivity extends AppCompatActivity {
     DatabaseReference database = FirebaseDatabase.getInstance().getReference("tasks");
 
     Button updateBtn;
-    TextView taskId;
 
+    EditText taskId;
     EditText assignee;
     EditText taskHead;
     EditText taskDetails;
@@ -51,7 +51,7 @@ public class UpdateTaskActivity extends AppCompatActivity {
         {
             @Override
             public void onClick (View v) {
-                updateTask(id);
+                updateTask(taskId.getText().toString().trim());
             }
         });
 

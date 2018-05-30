@@ -9,5 +9,6 @@ public class ContactUs extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_contact_us);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 }

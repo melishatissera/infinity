@@ -57,7 +57,7 @@ public class TaskListActivity extends AppCompatActivity {
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(TaskListActivity.this));
         progressDialog = new ProgressDialog(TaskListActivity.this);
-        progressDialog.setMessage("Loading Data from Firebase Database");
+        progressDialog.setMessage("Loading...");
         progressDialog.show();
         databaseReference = FirebaseDatabase.getInstance().getReference().child("tasks");
         databaseReference.addValueEventListener(new ValueEventListener() {

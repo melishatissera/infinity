@@ -48,6 +48,7 @@ public class InsertTaskActivity extends AppCompatActivity {
     EditText dueOn;
    public String assgnee;
 
+    EditText taskStatus;
     EditText selectDate;
     private int mYear, mMonth, mDay;
     private DatabaseReference mDatabase;
@@ -64,6 +65,7 @@ public class InsertTaskActivity extends AppCompatActivity {
         taskNo = findViewById(R.id.taskNo);
         taskHead = findViewById(R.id.taskHead);
         taskDetails = findViewById(R.id.taskDetails);
+        taskStatus = findViewById(R.id.taskStatus);
         dueOn = findViewById(R.id.dueOn);
 
         selectDate=(EditText)findViewById(R.id.dueOn);
@@ -128,6 +130,7 @@ public class InsertTaskActivity extends AppCompatActivity {
         final String taskHeadField = taskHead.getText().toString();
         final String taskDetailsField = taskDetails.getText().toString();
         final String dueOnField = dueOn.getText().toString();
+        final String taskStatusField = taskStatus.getText().toString();
 
         setEditingEnabled(false);
         Toast.makeText(this, "Posting...", Toast.LENGTH_SHORT).show();
@@ -174,7 +177,7 @@ public class InsertTaskActivity extends AppCompatActivity {
                         setEditingEnabled(true);
                         finish();
 
-                        Tasks tasksInsert = new Tasks(taskNoField, taskHeadField, taskDetailsField, dueOnField, assigneeField);
+                        Tasks tasksInsert = new Tasks(taskNoField, taskHeadField, taskDetailsField, dueOnField, assigneeField, taskStatusField);
                         database.child("tasks").child(taskNoField).setValue(tasksInsert);
                     }
 

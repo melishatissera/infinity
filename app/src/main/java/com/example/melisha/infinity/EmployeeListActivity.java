@@ -55,7 +55,7 @@ public class EmployeeListActivity extends AppCompatActivity {
       recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(EmployeeListActivity.this));
         progressDialog = new ProgressDialog(EmployeeListActivity.this);
-        progressDialog.setMessage("Loading Data from Firebase Database");
+        progressDialog.setMessage("Loading...");
         progressDialog.show();
         databaseReference = FirebaseDatabase.getInstance().getReference().child("employees");
         databaseReference.addValueEventListener(new ValueEventListener() {
@@ -65,6 +65,7 @@ public class EmployeeListActivity extends AppCompatActivity {
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                     try {
                         EmployeesRatings empList = dataSnapshot.getValue(EmployeesRatings.class);
+                        Toast.makeText(EmployeeListActivity.this, "" +empList, Toast.LENGTH_SHORT).show();
                         employeeList.add(empList);
 
                         if(employeeList == null ){
