@@ -212,7 +212,7 @@ public class InsertTaskActivity extends AppCompatActivity {
 
 
 class CustomOnItemSelectedListener implements AdapterView.OnItemSelectedListener {
-String assignee="";
+String assignee="admin";
     public void onItemSelected(AdapterView<?> parent, View view, int pos,long id) {
         Toast.makeText(parent.getContext(),
                 "OnItemSelectedListener : " + parent.getItemAtPosition(pos).toString(),
