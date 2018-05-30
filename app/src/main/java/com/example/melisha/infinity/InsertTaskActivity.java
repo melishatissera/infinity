@@ -14,6 +14,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TimePicker;
 import android.widget.Toast;
 import android.widget.Toolbar;
@@ -42,7 +43,7 @@ public class InsertTaskActivity extends AppCompatActivity {
     EditText taskHead;
     EditText taskDetails;
     EditText dueOn;
-
+    EditText taskStatus;
     EditText selectDate;
     private int mYear, mMonth, mDay;
 
@@ -58,6 +59,7 @@ public class InsertTaskActivity extends AppCompatActivity {
         taskNo = findViewById(R.id.taskNo);
         taskHead = findViewById(R.id.taskHead);
         taskDetails = findViewById(R.id.taskDetails);
+        taskStatus = findViewById(R.id.taskStatus);
         dueOn = findViewById(R.id.dueOn);
 
         selectDate=(EditText)findViewById(R.id.dueOn);
@@ -122,6 +124,7 @@ public class InsertTaskActivity extends AppCompatActivity {
         final String taskHeadField = taskHead.getText().toString();
         final String taskDetailsField = taskDetails.getText().toString();
         final String dueOnField = dueOn.getText().toString();
+        final String taskStatusField = taskStatus.getText().toString();
 
         setEditingEnabled(false);
         Toast.makeText(this, "Posting...", Toast.LENGTH_SHORT).show();
@@ -144,7 +147,7 @@ public class InsertTaskActivity extends AppCompatActivity {
                         setEditingEnabled(true);
                         finish();
 
-                        Tasks tasksInsert = new Tasks(taskNoField, taskHeadField, taskDetailsField, dueOnField, assigneeField);
+                        Tasks tasksInsert = new Tasks(taskNoField, taskHeadField, taskDetailsField, dueOnField, assigneeField, taskStatusField);
                         database.child("tasks").child(taskNoField).setValue(tasksInsert);
                     }
 

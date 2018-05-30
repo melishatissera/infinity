@@ -13,6 +13,15 @@ public class Tasks {
     public String taskDesc;
     public String taskDueOn;
     public String taskAssignee;
+    public String taskStatus;
+
+    public String getTaskStatus() {
+        return taskStatus;
+    }
+
+    public void setTaskStatus(String taskStatus) {
+        this.taskStatus = taskStatus;
+    }
 
     public String getTaskID() {
         return taskID;
@@ -57,12 +66,13 @@ public class Tasks {
     public Tasks() {
     }
 
-    public Tasks(String taskID,String taskName, String taskDesc, String taskDueOn,String taskAssignee) {
+    public Tasks(String taskID,String taskName, String taskDesc, String taskDueOn,String taskAssignee, String taskStatus) {
         this.taskID = taskID;
         this.taskName = taskName;
         this.taskDesc = taskDesc;
         this.taskDueOn = taskDueOn;
         this.taskAssignee = taskAssignee;
+        this.taskStatus = taskStatus;
     }
 
     @Exclude
@@ -73,7 +83,7 @@ public class Tasks {
         result.put("taskDesc", taskDesc);
         result.put("taskDueOn", taskDueOn);
         result.put("taskAssignee", taskAssignee);
-
+        result.put("taskStatus", taskStatus);
         return result;
     }
 }

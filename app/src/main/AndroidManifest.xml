@@ -39,7 +39,8 @@
         <activity
             android:name=".DashboardActivity"
             android:label="@string/title_activity_dashboard"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
         <activity
             android:name=".NewEmployeeActivity"
             android:label="@string/title_activity_new_employee"
@@ -58,16 +59,36 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ViewAssignTaskListActivity" />
-        <activity android:name=".ViewMangerAssignTaskListActivity" />
-        <activity android:name=".NonAssignTaskListActivity" />
-        <activity android:name=".CompletedTaskListMangerActivity" />
-        <activity android:name=".OnGoingMangerTaskListActivity" />
-        <activity android:name=".OnGoingTaskListActivity" />
-        <activity android:name=".CompletedTaskListActivity" />
+        <activity
+            android:name=".ViewAssignTaskListActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity
+            android:name=".ViewMangerAssignTaskListActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity
+            android:name=".NonAssignTaskListActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity
+            android:name=".CompletedTaskListMangerActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+
+        </activity>
+        <activity
+            android:name=".OnGoingMangerTaskListActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+
+        </activity>
+        <activity
+            android:name=".OnGoingTaskListActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+
+        </activity>
+        <activity
+            android:name=".CompletedTaskListActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
         <activity
             android:name=".AboutUs"
-            android:label="@string/title_activity_about_us"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".ContactUs"></activity>
     </application>

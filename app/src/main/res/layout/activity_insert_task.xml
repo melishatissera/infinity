@@ -30,16 +30,6 @@
                 android:typeface="serif" />
 
             <EditText
-                android:id="@+id/assignee"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:backgroundTint="@color/white"
-                android:hint="Assignee"
-                android:inputType="textPersonName"
-                android:textColor="@color/white"
-                android:textColorHint="@color/white" />
-
-            <EditText
                 android:id="@+id/taskNo"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
@@ -48,6 +38,16 @@
                 android:backgroundTint="@color/white"
                 android:hint="Task No."
                 android:inputType="text"
+                android:textColor="@color/white"
+                android:textColorHint="@color/white" />
+
+            <EditText
+                android:id="@+id/assignee"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/white"
+                android:hint="Assignee"
+                android:inputType="textPersonName"
                 android:textColor="@color/white"
                 android:textColorHint="@color/white" />
 
@@ -75,6 +75,20 @@
                 android:textColor="@color/white"
                 android:textColorHint="@color/white" />
 
+
+            <EditText
+                android:id="@+id/taskStatus"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="10dp"
+                android:backgroundTint="@color/white"
+                android:breakStrategy="balanced"
+                android:fitsSystemWindows="true"
+                android:gravity="top"
+                android:text="Status"
+                android:textColor="@color/white"
+                android:textColorHint="@color/white" />
 
             <EditText
                 android:id="@+id/taskDetails"

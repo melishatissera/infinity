@@ -9,13 +9,9 @@ import java.util.Map;
 @IgnoreExtraProperties
 public class EmployeesRatings {
 
-    String EmployeeID;
-    String EmployeesRatings;
-    String EmployeeName;
-
-    public String getEmployeesRatings() {
-        return EmployeesRatings;
-    }
+    public String EmployeeID;
+    public String EmployeesRatings;
+    public String EmployeeName;
 
     public String getEmployeeID() {
         return EmployeeID;
@@ -23,6 +19,10 @@ public class EmployeesRatings {
 
     public void setEmployeeID(String employeeID) {
         EmployeeID = employeeID;
+    }
+
+    public String getEmployeesRatings() {
+        return EmployeesRatings;
     }
 
     public void setEmployeesRatings(String employeesRatings) {
@@ -36,6 +36,8 @@ public class EmployeesRatings {
     public void setEmployeeName(String employeeName) {
         EmployeeName = employeeName;
     }
+
+
 
     public EmployeesRatings( String employeesRatings, String employeeName, String employeeID){
         this.EmployeesRatings = employeesRatings;

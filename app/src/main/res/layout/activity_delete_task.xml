@@ -20,16 +20,25 @@
         android:typeface="serif" />
 
     <TextView
-        android:id="@+id/taskID"
-        android:layout_width="fill_parent"
+        android:id="@+id/textView7"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:backgroundTint="@color/white"
-        android:hint="Assignee"
+        android:paddingBottom="50px"
+        android:text="Text ID"
+        android:textAlignment="center"
+        android:textColor="#fff" />
+
+
+    <EditText
+        android:id="@+id/taskID"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="50px"
+        android:ems="10"
+        android:hint="Task ID"
         android:inputType="textPersonName"
-        android:textColor="@color/white"
-        android:textColorHint="@color/white" />
-
-
+        android:textAlignment="center"
+        android:textColor="#fff" />
 
     <Button
         android:id="@+id/btnDelete"
