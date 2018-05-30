@@ -112,7 +112,7 @@ public class NewEmployeeActivity extends AppCompatActivity {
                         setEditingEnabled(true);
                         finish();
 
-                        Users NewUser = new Users( Name, Email, Type, Password);
+                        Users NewUser = new Users( Name, Email, Type, Password,"id");
                         database.child("employees").child(Name).setValue(NewUser);
                     }
 

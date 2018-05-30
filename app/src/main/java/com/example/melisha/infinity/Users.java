@@ -9,6 +9,7 @@ public class Users {
     public String empEmail;
     public String empPassword;
     public String empType;
+    public String UserID;
 
     public String getEmpName() {
         return empName;
@@ -41,15 +42,24 @@ public class Users {
     public void setEmpType(String empType) {
         this.empType = empType;
     }
+    public String getUserID() {
+        return UserID;
+    }
+
+    public void setUserID(String userID) {
+        this.UserID = userID;
+    }
 
     public Users() {
     }
 
-    public Users(String name, String email, String employeeType, String Password) {
+    public Users(String name, String email, String employeeType, String Password,String userID) {
         this.empName = name;
         this.empEmail = email;
         this.empType = employeeType;
         this.empPassword = Password;
+        this.UserID = userID;
+
     }
 
 }

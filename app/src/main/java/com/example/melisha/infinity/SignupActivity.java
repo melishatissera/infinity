@@ -26,8 +26,9 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class SignupActivity extends AppCompatActivity {
     private static final String TAG ="" ;
-    private TextView email;
+    private EditText email;
     private EditText password;
+    private EditText sname;
     public String userType;
     private FirebaseAuth mAuth;
     private GoogleSignInClient mGoogleSignInClient;
@@ -42,6 +43,7 @@ public class SignupActivity extends AppCompatActivity {
 
         email = (EditText)findViewById(R.id.SignUpemail);
         password = (EditText)findViewById(R.id.SignUppassword);
+        sname = (EditText)findViewById(R.id.SignUpname);
 
         Button mEmailSignInButton = (Button) findViewById(R.id.btnSignUp);
         mEmailSignInButton.setOnClickListener(new View.OnClickListener() {
@@ -77,8 +79,8 @@ public class SignupActivity extends AppCompatActivity {
                             Log.d(TAG, "createUserWithEmail:success");
                             FirebaseUser user = mAuth.getCurrentUser();
 
-//                            Users users = new Users(taskNoField, taskHeadField, taskDetailsField, dueOnField, assigneeField);
-//                            database.child("users").child(taskNoField).setValue(tasksInsert);
+                            Users users = new Users(sname.getText().toString(), email.getText().toString(), "admin", password.getText().toString(),user.getUid());
+                            database.child("users").child(user.getUid()).setValue(users);
 
                             Intent intent = new Intent(getApplicationContext(),DashboardActivity.class);
                             intent.putExtra("EXTRA_SESSION_ID", userType);
