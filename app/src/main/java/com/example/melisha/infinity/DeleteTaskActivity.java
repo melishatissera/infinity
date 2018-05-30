@@ -10,11 +10,8 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
 public class DeleteTaskActivity extends AppCompatActivity {
 
@@ -33,7 +30,7 @@ public class DeleteTaskActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         id = intent.getStringExtra("ID");
-        taskId = findViewById(R.id.employeeName);
+        taskId = findViewById(R.id.taskID);
         deleteBtn = findViewById(R.id.btnDelete);
         taskId.setText(id);
 
@@ -64,7 +61,7 @@ public class DeleteTaskActivity extends AppCompatActivity {
 
     public void deleteTask(String id) {
 
-        FirebaseDatabase.getInstance().getReference().child("tasks").child(id).removeValue();
+        database.child(id).removeValue();
         finish();
         Toast.makeText(this, "DELETED..", Toast.LENGTH_SHORT).show();
     }

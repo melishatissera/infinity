@@ -171,7 +171,7 @@ public class TaskListActivity extends AppCompatActivity {
 
                 super(itemView);
 
-                taskNo = (TextView) itemView.findViewById(R.id.employeeName);
+                taskNo = (TextView) itemView.findViewById(R.id.taskID);
                 taskDue = (TextView) itemView.findViewById(R.id.taskDueOn);
                 btnDelete = itemView.findViewById(R.id.btnDelete);
                 btnDone = itemView.findViewById(R.id.btnDone);

@@ -12,7 +12,7 @@
         android:layout_height="113dp">
 
         <TextView
-            android:id="@+id/employeeName"
+            android:id="@+id/taskID"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
@@ -29,8 +29,8 @@
             android:id="@+id/taskDueOn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignStart="@+id/employeeName"
-            android:layout_below="@+id/employeeName"
+            android:layout_alignStart="@+id/taskID"
+            android:layout_below="@+id/taskID"
             android:maxLines="3"
             android:padding="8dp"
             android:textColor="#fd2562"
@@ -42,7 +42,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignStart="@+id/btnDone"
-            android:layout_alignTop="@+id/employeeName"
+            android:layout_alignTop="@+id/taskID"
             android:background="@android:drawable/ic_menu_delete"
             app:srcCompat="@android:drawable/ic_menu_delete" />
 
@@ -51,7 +51,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignEnd="@+id/btnDone"
-            android:layout_alignTop="@+id/employeeName"
+            android:layout_alignTop="@+id/taskID"
             android:background="@android:drawable/ic_menu_edit"
             app:srcCompat="@android:drawable/ic_menu_edit" />
 
@@ -60,7 +60,7 @@
             android:layout_width="wrap_content"
             android:layout_height="34dp"
             android:layout_alignParentEnd="true"
-            android:layout_below="@+id/employeeName"
+            android:layout_below="@+id/taskID"
             android:layout_marginEnd="15dp"
             android:text="Done"
             android:textSize="12sp" />
