@@ -11,6 +11,8 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -23,6 +25,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.text.SimpleDateFormat;
@@ -36,26 +39,29 @@ import java.util.Map;
 public class InsertTaskActivity extends AppCompatActivity {
 
     DatabaseReference database = FirebaseDatabase.getInstance().getReference();
-
+    CustomOnItemSelectedListener customOnItemSelectedListener = new CustomOnItemSelectedListener();
     Button insertBtn;
-    EditText assignee;
+    Spinner assignee;
     EditText taskNo;
     EditText taskHead;
     EditText taskDetails;
     EditText dueOn;
+   public String assgnee;
+
     EditText taskStatus;
     EditText selectDate;
     private int mYear, mMonth, mDay;
-
+    private DatabaseReference mDatabase;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_insert_task);
+        mDatabase = FirebaseDatabase.getInstance().getReference();
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         insertBtn = findViewById(R.id.insertBtn);
-        assignee = findViewById(R.id.assignee);
+        assignee = findViewById(R.id.spinner);
         taskNo = findViewById(R.id.taskNo);
         taskHead = findViewById(R.id.taskHead);
         taskDetails = findViewById(R.id.taskDetails);
@@ -119,7 +125,7 @@ public class InsertTaskActivity extends AppCompatActivity {
     }
 
     private void insertTask() {
-        final String assigneeField = assignee.getText().toString();
+        final String assigneeField = customOnItemSelectedListener.getAssignee();
         final String taskNoField = taskNo.getText().toString();
         final String taskHeadField = taskHead.getText().toString();
         final String taskDetailsField = taskDetails.getText().toString();
@@ -144,6 +150,30 @@ public class InsertTaskActivity extends AppCompatActivity {
                         } else {
 
                         }
+
+                        Query myTopPostsQuery = mDatabase.child("users")
+                                .orderByChild("starCount");
+                        Spinner spinner = (Spinner) findViewById(R.id.spinner);
+                        final ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getApplicationContext(),
+                                R.array.planets_array, android.R.layout.simple_spinner_item);
+                        myTopPostsQuery.addValueEventListener(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(DataSnapshot dataSnapshot) {
+                                for (DataSnapshot postSnapshot: dataSnapshot.getChildren()) {
+                                  adapter.add(postSnapshot.getKey());
+                                }
+                            }
+
+                            @Override
+                            public void onCancelled(DatabaseError databaseError) {
+
+                            }
+                        });
+                        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                        spinner.setAdapter(adapter);
+                        spinner = (Spinner) findViewById(R.id.spinner);
+                        spinner.setOnItemSelectedListener( customOnItemSelectedListener);
+
                         setEditingEnabled(true);
                         finish();
 
@@ -178,4 +208,25 @@ public class InsertTaskActivity extends AppCompatActivity {
         Map<String, Object> childUpdates = new HashMap<>();
         database.updateChildren(childUpdates);
     }
+}
+
+
+class CustomOnItemSelectedListener implements AdapterView.OnItemSelectedListener {
+String assignee="admin";
+    public void onItemSelected(AdapterView<?> parent, View view, int pos,long id) {
+        Toast.makeText(parent.getContext(),
+                "OnItemSelectedListener : " + parent.getItemAtPosition(pos).toString(),
+                Toast.LENGTH_SHORT).show();
+        assignee =  parent.getItemAtPosition(pos).toString();
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> arg0) {
+
+    }
+
+    public String getAssignee(){
+        return this.assignee;
+    }
+
 }

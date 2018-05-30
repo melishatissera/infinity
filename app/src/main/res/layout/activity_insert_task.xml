@@ -28,6 +28,15 @@
                 android:textColor="#FFFFFF"
                 android:textSize="30sp"
                 android:typeface="serif" />
+            <Spinner
+                android:id="@+id/spinner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/white"
+                android:hint="Assignee"
+                android:inputType="textPersonName"
+                android:textColor="@color/white"
+                android:textColorHint="@color/white" />
 
             <EditText
                 android:id="@+id/taskNo"
@@ -38,16 +47,6 @@
                 android:backgroundTint="@color/white"
                 android:hint="Task No."
                 android:inputType="text"
-                android:textColor="@color/white"
-                android:textColorHint="@color/white" />
-
-            <EditText
-                android:id="@+id/assignee"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:backgroundTint="@color/white"
-                android:hint="Assignee"
-                android:inputType="textPersonName"
                 android:textColor="@color/white"
                 android:textColorHint="@color/white" />
 
