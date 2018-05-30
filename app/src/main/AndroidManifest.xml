@@ -22,7 +22,9 @@
         </activity>
         <activity
             android:name=".LoginActivity"
-            android:label="@string/title_activity_login" />
+            android:label="@string/title_activity_login" >
+
+        </activity>
         <activity
             android:name=".TaskListActivity"
             android:label="@string/title_activity_task_list"
@@ -43,11 +45,7 @@
             android:name=".DashboardActivity"
             android:label="@string/title_activity_dashboard"
             android:theme="@style/AppTheme.NoActionBar">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
 
         </activity>
         <activity
@@ -56,8 +54,13 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".SignupActivity"
-            android:label="@string/title_activity_signup"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:label="Sign Up">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

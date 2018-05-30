@@ -15,6 +15,26 @@
       },
       "oauth_client": [
         {
+          "client_id": "1024811522268-ftupu33qb9br8ssgcbal9ueg64ck092f.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.melisha.infinity",
+            "certificate_hash": "c210c3ef17d9cca63206253f99af9fb43f4f708f"
+          }
+        },
+        {
+          "client_id": "1024811522268-3qg3h7t07a132nu40oo53obvfbf0lbb0.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.melisha.infinity",
+            "certificate_hash": "e1f98ffcde1b05894cc28eeed1270a3541c5a390"
+          }
+        },
+        {
+          "client_id": "1024811522268-cdopv0sb5756hqvckjj2ctd3gl57ihdq.apps.googleusercontent.com",
+          "client_type": 3
+        },
+        {
           "client_id": "1024811522268-cdopv0sb5756hqvckjj2ctd3gl57ihdq.apps.googleusercontent.com",
           "client_type": 3
         }
